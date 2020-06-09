@@ -1,0 +1,101 @@
+{
+  "activities": {
+    "inside": [
+      "bordspellen",
+      "videogamen",
+      "yoga",
+      "binnensport",
+      "lekkernijen maken"
+    ],
+    "outside": {
+      "basketball": {
+        "min_temp": 18,
+        "max_temp": 25
+      },
+      "voetbal": {
+        "min_temp": 18,
+        "max_temp": 25
+      },
+      "tennis": {
+        "min_temp": 18,
+        "max_temp": 25
+      },
+      "badminton": {
+        "min_temp": 18,
+        "max_temp": 25
+      },
+      "volleybal": {
+        "min_temp": 21,
+        "max_temp": 32
+      },
+      "skateboarden": {
+        "min_temp": 15,
+        "max_temp": 25
+      },
+      "hardlopen": {
+        "min_temp": 15,
+        "max_temp": 22
+      },
+      "picknicken": {
+        "min_temp": 18,
+        "max_temp": 28
+      },
+      "buitenspelen": {
+        "min_temp": 15,
+        "max_temp": 30
+      },
+      "fitness": {
+        "min_temp": 20,
+        "max_temp": 26
+      },
+      "winkelen": {
+        "min_temp": 12,
+        "max_temp": 24
+      },
+      "zwemmen": {
+        "min_temp": 23,
+        "max_temp": 32
+      },
+      "wandelen": {
+        "min_temp": 18,
+        "max_temp": 28
+      },
+      "tuinieren": {
+        "min_temp": 15,
+        "max_temp": 22
+      },
+      "fietsen": {
+        "min_temp": 13,
+        "max_temp": 25
+      },
+      "bbq'en": {
+        "min_temp": 20,
+        "max_temp": 28
+      },
+      "touwtjespringen": {
+        "min_temp": 18,
+        "max_temp": 22
+      },
+      "buiten-yoga": {
+        "min_temp": 20,
+        "max_temp": 25
+      },
+      "touren": {
+        "min_temp": 18,
+        "max_temp": 25
+      },
+      "kamperen": {
+        "min_temp": 20,
+        "max_temp": 25
+      },
+      "strand": {
+        "min_temp": 23,
+        "max_temp": 33
+      },
+      "vissen": {
+        "min_temp": 18,
+        "max_temp": 25
+      }
+    }
+  }
+}
