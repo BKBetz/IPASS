@@ -1,11 +1,13 @@
-from user_input import remove_stopwords
+from user_input import *
 from request import *
 import json
 import random
 
+location = getlocation()
 question = remove_stopwords()
-weather = get_current_weather()
-forecast = get_forecast()
+date = check_date(question)
+weather = filter_current_weather(location)
+forecast = get_correct_forecast_day(date, location)
 
 
 def get_activities(option):
@@ -53,4 +55,4 @@ def give_inside_activity():
 
 
 
-check_if_possible()
+# check_if_possible()
