@@ -2,7 +2,7 @@ import geocoder
 
 
 def getlocation():
-    answer = input('Mag het programma gebruik maken van uw locatie (JA/NEE)')
+    answer = input('Mag het programma gebruik maken van je locatie (JA/NEE)')
     while True:
         answer = answer.upper()
         if answer == "JA":
@@ -10,7 +10,7 @@ def getlocation():
             location = loc.city
             break
         elif answer == "NEE":
-            location = input('Vul een locatie in waar u het weer van wilt zien')
+            location = input('Vul een locatie in waar je het weer van wilt zien')
             break
         else:
             answer = input("Voer ja of nee in")

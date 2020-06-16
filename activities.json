@@ -8,23 +8,23 @@
       "lekkernijen maken"
     ],
     "outside": {
-      "basketball": {
+      "basketballen": {
         "min_temp": 18,
         "max_temp": 25
       },
-      "voetbal": {
+      "voetballen": {
         "min_temp": 18,
         "max_temp": 25
       },
-      "tennis": {
+      "tennissen": {
         "min_temp": 18,
         "max_temp": 25
       },
-      "badminton": {
+      "badmintonnen": {
         "min_temp": 18,
         "max_temp": 25
       },
-      "volleybal": {
+      "volleyballen": {
         "min_temp": 21,
         "max_temp": 32
       },
@@ -44,7 +44,7 @@
         "min_temp": 15,
         "max_temp": 30
       },
-      "fitness": {
+      "fitnessen": {
         "min_temp": 20,
         "max_temp": 26
       },
