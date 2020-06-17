@@ -54,9 +54,9 @@ def get_count(day):
     date_name = today.strftime('%a')
     c = 0
     while day != date_name:
-        new_date = today + timedelta(days=c+1)
-        date_name = new_date.strftime('%a')
         c += 1
+        new_date = today + timedelta(days=c)
+        date_name = new_date.strftime('%a')
 
     return c
 

@@ -39,14 +39,15 @@ def search_activities():
 
 def check_if_possible():
     info = search_activities()
-    if len(info) > 0:
-        for x in info:
-            if weather[1] >= info[x][0] and weather[1] <= info[x][1]:
-                print("possible")
-            else:
-                give_inside_activity()
-    else:
-        print("No activity was found")
+    print(forecast)
+    # if len(info) > 0:
+    #     for x in info:
+    #         if weather[1] >= info[x][0] and weather[1] <= info[x][1]:
+    #             print("possible")
+    #         else:
+    #             give_inside_activity()
+    # else:
+    #     print("No activity was found")
 
 
 def give_inside_activity():
@@ -55,4 +56,4 @@ def give_inside_activity():
 
 
 
-# check_if_possible()
+check_if_possible()
