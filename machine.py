@@ -1,5 +1,7 @@
-from user_input import *
-from request import *
+from backend.user_input import *
+from backend.request import *
+from backend.permission import *
+from flask import *
 import json
 import random
 
@@ -12,7 +14,7 @@ forecast = get_correct_forecast_day(date, location)
 
 def get_activities(option):
     try:
-        with open('activities.json') as json_file:
+        with open('backend/activities.json') as json_file:
             data = json.load(json_file)
             activities = data['activities'][option]
 
@@ -39,21 +41,18 @@ def search_activities():
 
 def check_if_possible():
     info = search_activities()
-    print(forecast)
-    # if len(info) > 0:
-    #     for x in info:
-    #         if weather[1] >= info[x][0] and weather[1] <= info[x][1]:
-    #             print("possible")
-    #         else:
-    #             give_inside_activity()
-    # else:
-    #     print("No activity was found")
+    for y in forecast:
+        if len(info) > 0:
+            for x in info:
+                if forecast[y] >= info[x][0] and forecast[y] <= info[x][1]:
+                    print("possible", y)
+                else:
+                    give_inside_activity(y, x)
+        else:
+            print("No activity was found")
 
 
-def give_inside_activity():
+def give_inside_activity(date, activity):
     inside_activities = get_activities('inside')
-    print(random.choice(inside_activities))
-
-
-
-check_if_possible()
+    str = "op {} is het geen goede dag om de volgende activiteit uit te voeren: {} een leuke activiteit zou {} zijn"
+    print(str.format(date, activity, random.choice(inside_activities)))

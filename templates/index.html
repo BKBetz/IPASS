@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Weatherbud</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+        <script src="https://use.fontawesome.com/8418aa1434.js"></script>
+    </head>
+    <body>
+        <h1>Weatherbud</h1>
+        <div class="app_box_1">
+            <div class="current_weather_box">
+                <div class="current_weather">
+                    <div class="list_box">
+                        <label class="list_title"><i class="fa fa-map-marker" aria-hidden="true"></i></label>
+                        <span class="list_content">{{content[3]}}</span>
+                    </div>
+                    <div class="list_box">
+                        <label class="list_title"><i class="fa fa-sun-o" aria-hidden="true"></i></label>
+                        <span class="list_content">{{content[0]}} °C</span>
+                    </div>
+                    <div class="list_box">
+                        <label class="list_title"><i class="fa fa-thermometer-half" aria-hidden="true"></i></label>
+                        <span class="list_content">{{content[1]}} °C</span>
+                    </div>
+                    <div class="list_box">
+                        <label class="list_title"><i class="fa fa-cloud" aria-hidden="true"></i></label>
+                        <span class="list_content">{{content[2]}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="app_box_2">
+            <div>questions_asked box</div>
+            <div>qustion input box</div>
+        </div>
+    </body>
+</html>
