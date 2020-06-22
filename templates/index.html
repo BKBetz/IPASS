@@ -5,32 +5,40 @@
         <script src="https://use.fontawesome.com/8418aa1434.js"></script>
     </head>
     <body>
-        <h1>Weatherbud</h1>
+        <h1 class="page_title">Weatherbud</h1>
         <div class="app_box_1">
+            <h5 class="error">{{errormessage}}</h5>
             <div class="current_weather_box">
                 <div class="current_weather">
                     <div class="list_box">
                         <label class="list_title"><i class="fa fa-map-marker" aria-hidden="true"></i></label>
-                        <span class="list_content">{{content[3]}}</span>
+                        <span class="list_content">{{weather[3]}}</span>
                     </div>
                     <div class="list_box">
                         <label class="list_title"><i class="fa fa-sun-o" aria-hidden="true"></i></label>
-                        <span class="list_content">{{content[0]}} °C</span>
+                        <span class="list_content">{{weather[0]}} °C</span>
                     </div>
                     <div class="list_box">
                         <label class="list_title"><i class="fa fa-thermometer-half" aria-hidden="true"></i></label>
-                        <span class="list_content">{{content[1]}} °C</span>
+                        <span class="list_content">{{weather[1]}} °C</span>
                     </div>
                     <div class="list_box">
                         <label class="list_title"><i class="fa fa-cloud" aria-hidden="true"></i></label>
-                        <span class="list_content">{{content[2]}}</span>
+                        <span class="list_content">{{weather[2]}}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="app_box_2">
-            <div>questions_asked box</div>
-            <div>qustion input box</div>
+            <div class="textbox">
+                {% for x in content %}
+                    <p>{{x}}</p>
+                {% endfor %}
+            </div>
+            <form action="{{url_for('question.get_question')}}" method="post" class="questionbox">
+                <input class="questionfield" type="text" name="question" placeholder="Stel je vraag"/>
+                <button class="submitbutton" type="submit"><i class="fa fa-paper-plane"></i></button>
+            </form>
         </div>
     </body>
 </html>

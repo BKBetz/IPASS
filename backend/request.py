@@ -7,11 +7,6 @@ def get_current_weather(location):
     response = requests.get(url.format(location))
     data = response.json()
 
-    while data['cod'] != 200:
-        location = input("De ingevoerde locatie is niet gevonden. Controleer op spellingsfouten of voer een andere plek in de buurt in")
-        response = requests.get(url.format(location))
-        data = response.json()
-
     return data
 
 
@@ -66,17 +61,20 @@ def get_average_temp(temps):
 
 def filter_current_weather(location):
     data = get_current_weather(location)
+    if data['cod'] != 200:
+        return "not found"
 
-    filtered = []
+    else:
+        filtered = []
 
-    temp = data['main']['temp']
-    fl = data['main']['feels_like']
-    weather = data['weather'][0]['description']
-    location = data['name']
+        temp = data['main']['temp']
+        fl = data['main']['feels_like']
+        weather = data['weather'][0]['description']
+        location = data['name']
 
-    filtered.append(temp)
-    filtered.append(fl)
-    filtered.append(weather)
-    filtered.append(location)
+        filtered.append(temp)
+        filtered.append(fl)
+        filtered.append(weather)
+        filtered.append(location)
 
-    return filtered
+        return filtered

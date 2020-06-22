@@ -7,12 +7,17 @@ location = Blueprint("location", __name__, static_folder="static", template_fold
 @location.route('/', methods=["POST", "GET"])
 @location.route('/permission', methods=["POST", "GET"])
 def getlocation():
+    if 'question' in session:
+        session.pop('question')
+    if 'location' in session:
+        session.pop('location')
+
     if request.method == "POST":
         permission = request.form["option"]
         if permission == 'ja':
-            location = geocoder.ip('me')
-            loc = location.city
-            return redirect(url_for("home", location=loc))
+            loc = geocoder.ip('me')
+            session['location'] = loc.city
+            return redirect(url_for("home"))
         else:
             return redirect(url_for("location.getcity"))
     else:
@@ -26,7 +31,8 @@ def getcity():
         if len(loc) == 0:
             return render_template('city.html', extra="Geen locatie ingevuld")
         else:
-            return redirect(url_for("home", location=loc))
+            session['location'] = loc
+            return redirect(url_for("home"))
     else:
         return render_template('city.html')
 

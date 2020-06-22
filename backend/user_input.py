@@ -1,14 +1,19 @@
 from nltk import *
 from datetime import *
+from flask import *
+
+question = Blueprint("question", __name__, static_folder="static", template_folder="templates")
 
 
+@question.route("/get", methods=["POST", "GET"])
 def get_question():
-    question = input("Stel je vraag ")
+    if request.method == "POST":
+        question = request.form['question']
+        all_questions = session['question']
+        all_questions.append(question)
+        session['question'] = all_questions
 
-    while len(question) == 0:
-        question = input("Je hebt geen vraag ingevuld...probeer opnieuw")
-
-    return question
+    return redirect(url_for('home'))
 
 
 def remove_stopwords():
