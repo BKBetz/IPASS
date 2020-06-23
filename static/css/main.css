@@ -78,13 +78,15 @@ body {
 .textbox {
     width: 60%;
     height: 70%;
+    display: flex;
+    flex-direction: column;
     margin: 2% auto 0;
     border-radius: 6px;
     background: white;
     overflow-y: scroll;
 }
 
-.questionbox {
+.inputbox {
     display: flex;
     flex-direction: row;
     width: 60%;
@@ -114,4 +116,24 @@ body {
     background: #2b2d42;
     color: white;
     border-radius: 4px;
+}
+
+.questionbox {
+    color: #22007c;
+    align-self: flex-end;
+    margin: 16px 3% 16px;
+    padding: 20px;
+    max-width: 40%;
+    background: rgba(192,192,192,0.4);
+    border-radius: 10px;
+}
+
+.answerbox {
+    color: #028090;
+    align-self: flex-start;
+    margin: 16px 3% 16px;
+    padding: 20px;
+    max-width: 40%;
+    background: rgba(192,192,192,0.4);
+    border-radius: 10px;
 }

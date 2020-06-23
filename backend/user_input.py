@@ -9,15 +9,14 @@ question = Blueprint("question", __name__, static_folder="static", template_fold
 def get_question():
     if request.method == "POST":
         question = request.form['question']
-        all_questions = session['question']
+        all_questions = session['questions']
         all_questions.append(question)
-        session['question'] = all_questions
+        session['questions'] = all_questions
 
-    return redirect(url_for('home'))
+    return redirect(url_for('get_answer', qt=question))
 
 
-def remove_stopwords():
-    sentence = get_question()
+def remove_stopwords(sentence):
     sent_array = word_tokenize(sentence)
 
     language = corpus.stopwords.words('dutch')

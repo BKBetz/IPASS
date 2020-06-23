@@ -2,6 +2,7 @@ from backend.permission import *
 from backend.request import *
 from backend.user_input import *
 from flask import *
+from machine import check_if_possible
 
 app = Flask(__name__)
 app.register_blueprint(location)
@@ -14,13 +15,42 @@ def home():
     if 'location' not in session:
         return redirect(url_for('location.getlocation'))
     else:
-        if 'question' not in session:
-            session['question'] = []
+        if 'questions' not in session:
+            session['questions'] = []
+
+        if 'answers' not in session:
+            session['answers'] = []
+
+        print(session['questions'])
+        print(session['answers'])
         cw = filter_current_weather(session['location'])
         if cw == "not found":
             return render_template("index.html", errormessage="De ingevoerde plek is niet gevonden, probeer opnieuw", weather=[0, 0, 0, 0])
         else:
-            return render_template("index.html", weather=cw, content=session['question'])
+            return render_template("index.html", weather=cw, len=len(session['questions']) , questions=session['questions'], answers=session['answers'])
+
+
+@app.route("/answer<qt>")
+def get_answer(qt):
+    if 'location' in session:
+        if 'questions' in session:
+            fq = remove_stopwords(qt)
+            date = check_date(fq)
+            forecast = get_correct_forecast_day(date, session['location'])
+            advice = check_if_possible(fq, forecast)
+            add_to_session(advice)
+
+            return redirect(url_for('home'))
+        else:
+            return redirect(url_for('home'))
+    else:
+        return redirect(url_for('location.getlocation'))
+
+
+def add_to_session(advice):
+    all_answers = session['answers']
+    all_answers.append(advice)
+    session['answers'] = all_answers
 
 
 if __name__ == '__main__':

@@ -7,8 +7,10 @@ location = Blueprint("location", __name__, static_folder="static", template_fold
 @location.route('/', methods=["POST", "GET"])
 @location.route('/permission', methods=["POST", "GET"])
 def getlocation():
-    if 'question' in session:
-        session.pop('question')
+    if 'answers' in session:
+        session.pop('answers')
+    if 'questions' in session:
+        session.pop('questions')
     if 'location' in session:
         session.pop('location')
 
