@@ -5,9 +5,15 @@
         <script src="https://use.fontawesome.com/8418aa1434.js"></script>
     </head>
     <body>
-        <h1 class="page_title">Weatherbud</h1>
         <div class="app_box_1">
-            <h5 class="error">{{errormessage}}</h5>
+            <h1 class="page_title">Weatherbud</h1>
+            {% with messages = get_flashed_messages() %}
+                {% if messages%}
+                    {% for message in messages %}
+                        <p class="error">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <div class="current_weather_box">
                 <div class="current_weather">
                     <div class="list_box">
@@ -30,6 +36,21 @@
             </div>
         </div>
         <div class="app_box_2">
+            <div class="htubox">
+                <h5 class="htu_title">How to use</h5>
+                <p class="htu_text">Weatherbud is een AI die de gebruiker advies geeft over activiteiten die je buiten kan doen. Het kijkt
+                    naar de vraag die wordt gesteld, ontleedt de zin dan om de belangerijke context eruit te halen. Vervolgens
+                    gaat het met die context in een lijst met activiteiten. Hierin probeert die de gevraagde activiteit(en) te
+                    vinden. Dan wordt er gekeken naar het weer en geeft op basis van de temperatuur advies.
+                </p>
+                <ul class="htu_list">Dingen om rekening mee te houden
+                    <li class="htu_item">De AI kan niet spellingsfouten herkennen.. De vraag "kan ik baskeballen" zal geen goed antwoord leveren</li>
+                    <li class="htu_item">De AI gaat uit van correcte grammatica.. De vraag "kan ik basketbal" zal geen goed antwoord leveren</li>
+                    <li class="htu_item">De AI heeft een lijst van activiteiten waar het gebruik van maakt.. Als de activiteit niet hierin staat zal het een melding geven</li>
+                </ul>
+            </div>
+        </div>
+        <div class="app_box_3">
             <div class="textbox">
                 {% for x in range(len) %}
                     <p class="questionbox">{{questions[x]}}</p>
@@ -42,7 +63,7 @@
             </div>
             <form action="{{url_for('question.get_question')}}" method="post" class="inputbox">
                 <input class="questionfield" type="text" name="question" placeholder="Stel je vraag"/>
-                <button class="submitbutton" type="submit"><i class="fa fa-paper-plane"></i></button>
+                <button class="questionbutton" type="submit"><i class="fa fa-paper-plane"></i></button>
             </form>
         </div>
     </body>

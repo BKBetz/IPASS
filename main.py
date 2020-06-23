@@ -23,9 +23,12 @@ def home():
 
         print(session['questions'])
         print(session['answers'])
+        print(session['location'])
         cw = filter_current_weather(session['location'])
+        print(cw)
         if cw == "not found":
-            return render_template("index.html", errormessage="De ingevoerde plek is niet gevonden, probeer opnieuw", weather=[0, 0, 0, 0])
+            flash('De gegeven locatie is niet gevonden')
+            return redirect(url_for('location.getcity'))
         else:
             return render_template("index.html", weather=cw, len=len(session['questions']) , questions=session['questions'], answers=session['answers'])
 

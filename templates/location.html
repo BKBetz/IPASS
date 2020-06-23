@@ -7,10 +7,22 @@
     <script src="https://use.fontawesome.com/8418aa1434.js"></script>
 </head>
 <body>
-    <form action="{{url_for('location.getlocation')}}" method="post">
-        <label>JA</label><input type="radio" name="option" value="ja" />
-        <label>NEE</label><input type="radio" name="option" value="nee"/>
-        <input type="submit" name="submit" value="submit"/>
-    </form>
+    <h1 class="page_title">Mogen we gebruik maken van je locatie</h1>
+    <div class="location_box">
+        <form action="{{url_for('location.getlocation')}}" method="post" class="form_box">
+            <div class="radiobox">
+                <div class="radiobutton"><label>JA</label><input type="radio" name="option" value="ja" /></div>
+                <div class="radiobutton"><label>NEE</label><input type="radio" name="option" value="nee"/></div>
+            </div>
+            <button class="locationbutton" type="submit"><i class="fa fa-paper-plane"></i></button>
+        </form>
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages%}
+            {% for message in messages %}
+                <p class="error">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 </body>
 </html>

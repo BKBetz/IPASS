@@ -33,11 +33,9 @@ def search_activities(question):
 
 def check_if_possible(question, forecast):
     info = search_activities(question)
-    print(forecast)
     answers = []
     for y in forecast:
         if forecast[y] == "none":
-            print(y)
             answers.append("De datum/dag waarvoor u advies wou hebben is niet gevonden.")
         else:
             if len(info) > 0:

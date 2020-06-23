@@ -21,7 +21,6 @@ def get_forecast(location):
 
 def get_correct_forecast_day(dates, location):
     data = get_forecast(location)
-    print(data)
     if data['cod'] != '200':
         weather = filter_current_weather(location)
         return weather
@@ -36,7 +35,6 @@ def get_correct_forecast_day(dates, location):
                 temps.append(x['main']['feels_like'])
 
         if len(temps) == 0:
-            print("niks gevonden")
             a_tmp = "none"
         else:
             a_tmp = get_average_temp(temps)
@@ -61,6 +59,7 @@ def get_average_temp(temps):
 
 def filter_current_weather(location):
     data = get_current_weather(location)
+    print(data['cod'])
     if data['cod'] != 200:
         return "not found"
 

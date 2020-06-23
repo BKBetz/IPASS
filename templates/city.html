@@ -8,11 +8,19 @@
 </head>
 <body>
     {{extra}}
-    <div class="app_box_2">
-        <form action="#" method="post">
-            <input type="text" placeholder="vul een stad in" name="city"/>
-            <input type="submit" value="submit" />
+    <h1 class="page_title">Type hier een locatie in (in Nederland)</h1>
+    <div class="location_box">
+        <form action="#" method="post" class="form_box">
+            <input class = questionfield type="text" placeholder="vul een stad in" name="city"/>
+            <button class="locationbutton" type="submit"><i class="fa fa-paper-plane"></i></button>
         </form>
     </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages%}
+            {% for message in messages %}
+                <p class="error">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 </body>
 </html>
