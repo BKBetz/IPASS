@@ -13,15 +13,16 @@ def getlocation():
         session.pop('questions')
     if 'location' in session:
         session.pop('location')
-
     if request.method == "POST":
-        permission = request.form["option"]
+        permission = request.form.get("option")
         if permission == 'ja':
             loc = geocoder.ip('me')
             session['location'] = loc.city
             return redirect(url_for("home"))
-        else:
+        elif permission == 'nee':
             return redirect(url_for("location.getcity"))
+        else:
+            return redirect(url_for('location.getlocation'))
     else:
         return render_template('location.html')
 
