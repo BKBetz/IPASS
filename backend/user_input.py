@@ -9,11 +9,14 @@ question = Blueprint("question", __name__, static_folder="static", template_fold
 def get_question():
     if request.method == "POST":
         question = request.form['question']
-        all_questions = session['questions']
-        all_questions.append(question)
-        session['questions'] = all_questions
+        if len(question) == 0:
+            return redirect(url_for('home'))
+        else:
+            all_questions = session['questions']
+            all_questions.append(question)
+            session['questions'] = all_questions
 
-    return redirect(url_for('get_answer', qt=question))
+            return redirect(url_for('get_answer', qt=question))
 
 
 def remove_stopwords(sentence):
@@ -31,7 +34,7 @@ def remove_stopwords(sentence):
 
 def check_date(words):
     today = date.today()
-    possible_dates = {'vandaag': 0, 'morgen': 1, 'overmorgen': 2, 'overovermorgen': 3, 'week': 7, 'maand': 31, 'jaar': 365,
+    possible_dates = {'vandaag': 0, 'morgen': 1, 'overmorgen': 2, 'overovermorgen': 3, 'week': 7, 'maand': 30, 'jaar': 365,
                       'maandag': get_count('Mon'), 'dinsdag': get_count('Tue'), 'woensdag': get_count('Wed'),
                       'donderdag': get_count('Thu'), 'vrijdag': get_count('Fri'), 'zaterdag': get_count('Sat'),
                       'zondag': get_count('Sun')}

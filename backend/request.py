@@ -2,7 +2,7 @@ import requests
 
 
 def get_current_weather(location):
-    url = "https://api.openweathermap.org/data/2.5/weather?q={}&units=metric&lang=nl&appid=df791e0435796b142477640396f9ef61"
+    url = "https://api.openweathermap.org/data/2.5/weather?q={},nl&units=metric&lang=nl&appid=df791e0435796b142477640396f9ef61"
 
     response = requests.get(url.format(location))
     data = response.json()
@@ -11,21 +11,21 @@ def get_current_weather(location):
 
 
 def get_forecast(location):
-    url = "https://api.openweathermap.org/data/2.5/forecast?q={}&units=metric&lang=nl&appid=df791e0435796b142477640396f9ef61"
+    url = "https://api.openweathermap.org/data/2.5/forecast?q={},nl&units=metric&lang=nl&appid=df791e0435796b142477640396f9ef61"
 
     response = requests.get(url.format(location))
     data = response.json()
-
-    while data['cod'] != '200':
-        location = input("De ingevoerde locatie is niet gevonden. Controleer op spellingsfouten of voer een andere plek in de buurt in")
-        response = requests.get(url.format(location))
-        data = response.json()
 
     return data
 
 
 def get_correct_forecast_day(dates, location):
     data = get_forecast(location)
+    print(data)
+    if data['cod'] != '200':
+        weather = filter_current_weather(location)
+        return weather
+
     average_temps = {}
     for date in dates:
         temps = []
@@ -37,7 +37,7 @@ def get_correct_forecast_day(dates, location):
 
         if len(temps) == 0:
             print("niks gevonden")
-            a_tmp = filter_current_weather(location)
+            a_tmp = "none"
         else:
             a_tmp = get_average_temp(temps)
 

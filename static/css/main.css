@@ -98,7 +98,7 @@ body {
     border: none;
     border-radius: 2px;
     padding: 10px;
-    color: #ef233c;
+    color: #22007c;
     font-weight: bold;
 
 }
@@ -129,6 +129,9 @@ body {
 }
 
 .answerbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     color: #028090;
     align-self: flex-start;
     margin: 16px 3% 16px;
