@@ -144,11 +144,11 @@ def filter_current_weather(location):
         <ul>
             <li>
                 <p>Usage:</p>
-                <h5>This function gets the current weather given by get_current_weather and removes all unnecessary data</h5>
+                <h5>This function gets the current weather given by get_current_weather function and removes all unnecessary data</h5>
             </li>
             <li>
                 <p>Parameters</p>
-                <h5>location: The location given by the user</h5>
+                <h5>location: The location given by the user used for the get_current_weather function</h5>
             </li>
         </ul>
 </details>
@@ -174,6 +174,17 @@ def filter_current_weather(location):
         avg_temp = round(temps[0], 2)
 
     return avg_temp</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Calculate average temperature of the day. It looks at the current time and uses the temps given till 0:00.
+            If the time is 18:00 it uses all temps given from 18:00 to 0:00 to calculate average temperature</h5>
+        </li>
+        <li>
+            <p>temps</p>
+            <h5>List of temperatures to calculate the average with</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="request.get_correct_forecast_day"><code class="name flex">
@@ -207,6 +218,17 @@ def filter_current_weather(location):
         average_temps[date] = a_tmp
 
     return average_temps</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>This function looks at the dates given en gets the average temperature for each day</h5>
+        </li>
+        <li>
+            <p>Parameters</p>
+            <h5>location: The location given by the user used for the get_forecast function</h5>
+            <h5>dates: list of dates used for getting the right data from the forecast call</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="request.get_current_weather"><code class="name flex">
@@ -225,6 +247,16 @@ def filter_current_weather(location):
     data = response.json()
 
     return data</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Get the current weather used for the filter_current_weather function</h5>
+        </li>
+        <li>
+            <p>Parameters</p>
+            <h5>location: The location given by the user</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="request.get_forecast"><code class="name flex">
@@ -243,6 +275,17 @@ def filter_current_weather(location):
     data = response.json()
 
     return data</code></pre>
+
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Get the forecast for up to 5 days (data for every 3 hours for 5 days) using a location</h5>
+        </li>
+        <li>
+            <p>Parameters</p>
+            <h5>location: The location given by the user</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 </dl>
