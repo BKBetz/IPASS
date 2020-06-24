@@ -104,6 +104,17 @@ def getcity():
             return redirect(url_for(&#34;home&#34;))
     else:
         return render_template(&#39;city.html&#39;)</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>If the user doesn't want to use his/her location.
+                He/she can enter an inputfield to get the data for the entered location. The location is added to the session</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>None</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="permission.getlocation"><code class="name flex">
@@ -143,6 +154,17 @@ def getlocation():
             return redirect(url_for(&#39;location.getlocation&#39;))
     else:
         return render_template(&#39;location.html&#39;)</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>The first page, if there is data in the sessions. It resets all sessions variables. Has 2 inputs, one to get users exact location
+            and the other to redirect user to the getcity function to get an location entered by the user. The location is added to the session.</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>None</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 </dl>

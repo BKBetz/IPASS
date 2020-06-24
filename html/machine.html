@@ -155,6 +155,17 @@ def give_inside_activity():
                 answers.append(&#34;De gevraagde activiteit is niet gevonden, check op spellingsfouten. Als het goed is gespeld zit de activiteit niet in de database.&#34;)
 
     return answers</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>gets all activities asked from json file and compares the data in the activities with the forecast temperature to give advice.</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>question: question asked by users. The question is already filtered with the remove_stopwords function</h5>
+            <h5>forecast: the forecast temperature given by the get_correct_forecast_day function</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="machine.find_replacement"><code class="name flex">
@@ -182,6 +193,18 @@ def give_inside_activity():
     else:
         # pick random outside activity that can act as a replacement
         return random.choice(replacements)</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Searches for a replacement activity if the activity asked isn't a good activity to do.
+                checks for outside activities first, if none is found returns an random inside activity
+            </h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>temp: temperatuur used to compare each activity in the json file to check if it is possible to do the activity</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="machine.get_activities"><code class="name flex">
@@ -204,6 +227,16 @@ def give_inside_activity():
 
     except KeyError:
         return &#34;Wrong value given to function&#34;</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Function that returns the correct json data based on the given option parameter. return Keyerror message if wrong parameter was given</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>option: used to define what json data you want to fetch (inside or outside)</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="machine.give_inside_activity"><code class="name flex">
@@ -219,6 +252,16 @@ def give_inside_activity():
     # return random inside activity
     inside_activities = get_activities(&#39;inside&#39;)
     return random.choice(inside_activities)</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>If there is no outside activity that can act as an replacement the find_replacement function uses this function to return a random inside activity</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>None</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="machine.pretty_answer"><code class="name flex">
@@ -241,6 +284,19 @@ def give_inside_activity():
         replacement = find_replacement(temp)
         str = &#34;Op {} is het gemiddeld {} graden en is het geen goede dag om de volgende activiteit uit te voeren: {}. Een leuke activiteit zou {} zijn.&#34;
         return str.format(clean_date, temp, activity, replacement)</code></pre>
+        <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Creates an nice string to return to the user when asking for advice. Returns different string based on possible boolean</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>date: date used to put in the string</h5>
+            <h5>temp: the temperature used to put in the string</h5>
+            <h5>activity: activity used to put in the string</h5>
+            <h5>possible: boolean to check which string to return</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="machine.search_activities"><code class="name flex">
@@ -267,6 +323,16 @@ def give_inside_activity():
                 activities_asked[activity] = activity_temp
 
     return activities_asked</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Looks at the question given and uses the words in the question to look for activities in the json file returns all activities found.</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>question: question asked by users. The question is already filtered with the remove_stopwords function</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 </dl>

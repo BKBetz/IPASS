@@ -113,6 +113,16 @@ if __name__ == &#39;__main__&#39;:
     all_answers = session[&#39;answers&#39;]
     all_answers.append(advice)
     session[&#39;answers&#39;] = all_answers</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Used to add answers for asked questions to the session.</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>advice: the answer given by the function get_answer that is added to the session</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="main.get_answer"><code class="name flex">
@@ -140,6 +150,22 @@ def get_answer(qt):
             return redirect(url_for(&#39;home&#39;))
     else:
         return redirect(url_for(&#39;location.getlocation&#39;))</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Uses several functions to give advice. This function is immediately called after the user asks a question and works as follow:<br>
+                - gets question from user and unnecessary words are removed with the remove_stopwords function <br>
+                - the filtered question is getting checked to see if dates where asked in the question with the check_date function<br>
+                - with the date given by the check_date function it gets the correct forecast data with the get_correct_forecast_day function<br>
+                - uses the filtered question and the forecast data to check if the activity is possible with the check_if_possible function<br>
+                - finally adds the given advice to the session for answers
+            </h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>qt: the question asked by the user</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="main.home"><code class="name flex">
@@ -176,6 +202,16 @@ def home():
             return redirect(url_for(&#39;location.getcity&#39;))
         else:
             return render_template(&#34;index.html&#34;, weather=cw, len=len(session[&#39;questions&#39;]) , questions=session[&#39;questions&#39;], answers=session[&#39;answers&#39;])</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Homepage of the application. Displays current weather and shows all question asked en answers given during the session.</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>None</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 </dl>

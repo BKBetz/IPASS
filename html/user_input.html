@@ -151,6 +151,16 @@ def get_count(day):
         dates_asked.add(today.strftime(&#39;%Y-%m-%d&#39;))
 
     return dates_asked</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Used to check if the user wants an different date (or a forecast) instead of the current date. If none is found returns current date</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>words: the words in the questions after it had been filtered by the remove_stopwords function</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="user_input.get_count"><code class="name flex">
@@ -174,6 +184,18 @@ def get_count(day):
         date_name = new_date.strftime(&#39;%a&#39;)
 
     return c</code></pre>
+
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Looks at the current date and finds the date of the day asked.. so if today is 24-06-2020 and u ask for monday
+                it knows the date is 29-06-2020 it returns the amount of days between the current date and the date of the asked day so it returns 29-24 = 5</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>day: the day you want to know the date of</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="user_input.get_question"><code class="name flex">
@@ -203,6 +225,16 @@ def get_question():
 
             # immediatly get answer to save in session
             return redirect(url_for(&#39;get_answer&#39;, qt=question))</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Gets the question from the user input. immediately adds question to the session and gets the answer to add to the session as well</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>None</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 <dt id="user_input.remove_stopwords"><code class="name flex">
@@ -226,6 +258,16 @@ def get_question():
             new_sentence.append(x)
 
     return new_sentence</code></pre>
+    <ul>
+        <li>
+            <p>Usage:</p>
+            <h5>Gets the full question that has been asked and filters it. it removes all unnecessary words with the nltk library</h5>
+        </li>
+        <li>
+            <p>Parameters:</p>
+            <h5>sentence: the question that has been asked by the user</h5>
+        </li>
+    </ul>
 </details>
 </dd>
 </dl>
