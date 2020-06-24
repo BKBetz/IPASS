@@ -5,13 +5,45 @@ from machine import *
 from datetime import *
 
 
+"""
+    Er zijn een paar functies die niet getest worden. Hier zijn de redenen:
+    
+    voor:
+    - get_question
+    - getlocation
+    - getcity
+    - home
+    - getanswer
+    
+    geld overal hetzelfde probleem en dat is dat dit flask functies zijn die gebruik maken van post methods of iets
+    anders van flask en ik heb geen idee hoe je dit test
+    
+    voor:
+    - findreplacement
+    - give_inside_activity
+    
+    geld dat beide een random waarde meegeven. Om te testen of er echt een vaste waarde uit komt kan dus niet
+    
+    voor:
+    - get_count
+    
+    geld dat deze functie kijkt naar de datum van vandaag en de dagen van de week. De waarde die je terug krijgt van 
+    deze functie zal dus altijd anders zijn omdat de datum constant veranderd de functie heeft als parameter alleen de
+    dag die het moet zoeken dus ik kan ook geen vaste datum meegeven.
+
+
+"""
+
+
 def test_get_current_weather():
+    # simple function.. only test if code is 200 and the name is correct
     weather = get_current_weather('Rotterdam')
     assert weather['cod'] == 200
     assert weather['name'] == 'Rotterdam'
 
 
 def test_get_forecast():
+    # didn't give up a max length so we check the length as well
     weather = get_forecast('Rotterdam')
     assert weather['cod'] == '200'
     assert weather['cnt'] == 40
@@ -19,12 +51,14 @@ def test_get_forecast():
 
 
 def test_get_correct_forecast_day():
+    # forecast api give forecast for up to 5 days so giving a date 6 days or more from now should return none
     weather = get_correct_forecast_day(['2020-06-24', '2020-06-30'], 'Rotterdam')
     assert weather['2020-06-24'] != 'none'
     assert weather['2020-06-30'] == 'none'
 
 
 def test_get_average_temp():
+    # calculates average and returns with 2 decimals instead of complete number
     average = get_average_temp([20, 35, 22, 28, 25])
     average_2_decimal = get_average_temp([12.345, 12.3, 13.24])
     assert average == 26
@@ -33,6 +67,7 @@ def test_get_average_temp():
 
 
 def test_filter_currect_weather():
+    # The check if the location has been found is here so we test that as well
     weather = filter_current_weather('Rotterdam')
     wrong_weather = filter_current_weather('hghgdcgshgdf')
     assert weather != 'not found'
@@ -41,6 +76,7 @@ def test_filter_currect_weather():
 
 
 def test_remove_stopwords():
+    # should only keep important words and the first word of the sentence
     sn = "Kan ik morgen gaan basketballen"
     sn_2 = "Ik wil naar het strand"
     rs = remove_stopwords(sn)
@@ -51,6 +87,7 @@ def test_remove_stopwords():
 
 
 def test_check_date():
+    # check if 'morgen' equals 1 day from now.. same goes with 3 days
     tomorrow = date.today() + timedelta(days=1)
     td = date.today() + timedelta(days=3)
     sn = "Kan ik morgen naar het strand"
@@ -68,6 +105,7 @@ def test_check_date():
 
 
 def test_get_activities():
+    # test if the try catch works
     outside = get_activities('outside')
     inside = get_activities('inside')
     wrong = get_activities('dbchegcghcgh')
@@ -81,6 +119,7 @@ def test_get_activities():
 
 
 def test_search_activities():
+    # check if more than one activity can be found
     qt = ['Kan', 'gaan', 'basketballen']
     qt_2 = ['Strand', 'voetballen']
     activities = search_activities(qt)
@@ -94,6 +133,7 @@ def test_search_activities():
 
 
 def test_check_if_possible():
+    # this basically checks the whole algorithm for giving advice
     sn = "Kan ik morgen gaan basketballen"
     sn_2 = "Kan ik over een maand gaan basketballen"
     sn_3 = "Kan ik gaan efvhgefhcvhev"

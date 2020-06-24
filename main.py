@@ -12,9 +12,11 @@ app.secret_key = "secret"
 
 @app.route("/home", methods=["POST", "GET"])
 def home():
+    # location has to exist in order to go to this page
     if 'location' not in session:
         return redirect(url_for('location.getlocation'))
     else:
+        # create following sessions if they don't exist yet
         if 'questions' not in session:
             session['questions'] = []
 
@@ -24,9 +26,11 @@ def home():
         print(session['questions'])
         print(session['answers'])
         print(session['location'])
+        # get current weather
         cw = filter_current_weather(session['location'])
         print(cw)
         if cw == "not found":
+            # location hasn't been found.. return to city page
             flash('De gegeven locatie is niet gevonden')
             return redirect(url_for('location.getcity'))
         else:
@@ -35,6 +39,7 @@ def home():
 
 @app.route("/answer<qt>")
 def get_answer(qt):
+    # this is basically the function that makes combines all the functions into one big algorithm
     if 'location' in session:
         if 'questions' in session:
             fq = remove_stopwords(qt)
@@ -51,6 +56,7 @@ def get_answer(qt):
 
 
 def add_to_session(advice):
+    # add to session
     all_answers = session['answers']
     all_answers.append(advice)
     session['answers'] = all_answers

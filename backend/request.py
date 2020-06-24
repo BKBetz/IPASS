@@ -21,19 +21,18 @@ def get_forecast(location):
 
 def get_correct_forecast_day(dates, location):
     data = get_forecast(location)
-    if data['cod'] != '200':
-        weather = filter_current_weather(location)
-        return weather
 
     average_temps = {}
     for date in dates:
         temps = []
+        # we use dt_txt to compare with the dat but it is a datetime so we split it and use the first item (the date)
         for x in data['list']:
             datetime = x['dt_txt']
             dt = datetime.split(" ")
             if date == dt[0]:
                 temps.append(x['main']['feels_like'])
 
+        # if the len is 0 it means the user asked for a date that the api couldn't fetch
         if len(temps) == 0:
             a_tmp = "none"
         else:
@@ -45,6 +44,7 @@ def get_correct_forecast_day(dates, location):
 
 
 def get_average_temp(temps):
+    # this function checks all the temperature on a day and calculates the average
     if len(temps) > 1:
         total = 0
         for temp in temps:
@@ -59,7 +59,7 @@ def get_average_temp(temps):
 
 def filter_current_weather(location):
     data = get_current_weather(location)
-    print(data['cod'])
+    # if the location doesn't exist it returns this
     if data['cod'] != 200:
         return "not found"
 

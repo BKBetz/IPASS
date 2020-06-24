@@ -7,6 +7,7 @@ location = Blueprint("location", __name__, static_folder="static", template_fold
 @location.route('/', methods=["POST", "GET"])
 @location.route('/permission', methods=["POST", "GET"])
 def getlocation():
+    # first page.. if there are sessions while on this page..reset them
     if 'answers' in session:
         flash('Locatie en vragen gereset')
         session.pop('answers')
@@ -14,14 +15,18 @@ def getlocation():
         session.pop('questions')
     if 'location' in session:
         session.pop('location')
+
+    # check if method is post
     if request.method == "POST":
         permission = request.form.get("option")
         if permission == 'ja':
+            # this is used to get your current location
             loc = geocoder.ip('me')
             session['location'] = loc.city
             return redirect(url_for("home"))
         elif permission == 'nee':
             return redirect(url_for("location.getcity"))
+        # only button has been pressed
         else:
             flash('Geen antwoord gegeven')
             return redirect(url_for('location.getlocation'))
@@ -31,6 +36,7 @@ def getlocation():
 
 @location.route('/city', methods=["POST", "GET"])
 def getcity():
+    # enter city name for weather api
     if request.method == "POST":
         loc = request.form["city"]
         if len(loc) == 0:
