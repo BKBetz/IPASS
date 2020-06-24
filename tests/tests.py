@@ -93,4 +93,24 @@ def test_search_activities():
     assert 'basketballen' not in activities_2
 
 
+def test_check_if_possible():
+    sn = "Kan ik morgen gaan basketballen"
+    sn_2 = "Kan ik over een maand gaan basketballen"
+    sn_3 = "Kan ik gaan efvhgefhcvhev"
+    qt = remove_stopwords(sn)
+    qt_2 = remove_stopwords(sn_2)
+    qt_3 = remove_stopwords(sn_3)
+    dt = check_date(qt)
+    dt_2 = check_date(qt_2)
+    dt_3 = check_date(qt_3)
+    fc = get_correct_forecast_day(dt, 'Rotterdam')
+    fc_2 = get_correct_forecast_day(dt_2, 'Rotterdam')
+    fc_3 = get_correct_forecast_day(dt_3, 'Rotterdam')
+    advice = check_if_possible(qt, fc)
+    advice_2 = check_if_possible(qt_2, fc_2)
+    advice_3 = check_if_possible(qt_3, fc_3)
 
+    assert advice[0] != "De datum/dag waarvoor u advies wou hebben is niet gevonden."
+    assert advice[0] != "De gevraagde activiteit is niet gevonden, check op spellingsfouten. Als het goed is gespeld zit de activiteit niet in de database."
+    assert advice_2[0] == "De datum/dag waarvoor u advies wou hebben is niet gevonden."
+    assert advice_3[0] == "De gevraagde activiteit is niet gevonden, check op spellingsfouten. Als het goed is gespeld zit de activiteit niet in de database."
