@@ -10,10 +10,11 @@ def get_activities(option):
             data = json.load(json_file)
             activities = data['activities'][option]
 
+        print(activities)
         return activities
 
     except KeyError:
-        print("Wrong value given to function")
+        return "Wrong value given to function"
 
 
 def search_activities(question):
@@ -23,7 +24,7 @@ def search_activities(question):
     for word in question:
         for activity in outside_activities:
             activity_temp = []
-            if word == activity:
+            if word.lower() == activity:
                 for temp in outside_activities[activity]:
                     activity_temp.append(outside_activities[activity][temp])
                 activities_asked[activity] = activity_temp
