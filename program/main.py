@@ -1,8 +1,8 @@
-from backend.permission import *
-from backend.request import *
-from backend.user_input import *
+from program.backend.permission import *
+from program.backend.request import *
+from program.backend.user_input import *
 from flask import *
-from machine import check_if_possible
+from program.machine import check_if_possible
 
 app = Flask(__name__)
 app.register_blueprint(location)

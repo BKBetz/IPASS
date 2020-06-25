@@ -1,5 +1,6 @@
 from nltk import *
 from datetime import *
+from dateutil.parser import parse
 from flask import *
 
 question = Blueprint("question", __name__, static_folder="static", template_folder="templates")
@@ -42,10 +43,14 @@ def remove_stopwords(sentence):
 def check_date(words):
     # check if there has been asked for a date to get correct forecast
     today = date.today()
-    possible_dates = {'vandaag': 0, 'morgen': 1, 'overmorgen': 2, 'overovermorgen': 3, 'week': 7, 'maand': 30, 'jaar': 365,
+    possible_dates = {'vandaag': 0, 'morgen': 1, 'overmorgen': 2, 'overovermorgen': 3,
+                      'week': 7, 'maand': 30, 'jaar': 365,
                       'maandag': get_count('Mon'), 'dinsdag': get_count('Tue'), 'woensdag': get_count('Wed'),
                       'donderdag': get_count('Thu'), 'vrijdag': get_count('Fri'), 'zaterdag': get_count('Sat'),
                       'zondag': get_count('Sun')}
+
+    # dict used for plural of words to use in the numeric check
+    possible_numeric = {'morgens': 1, 'overmorgens': 2, 'overovermorgens': 3,'weken': 7, 'maanden': 30, 'jaren': 365}
 
     dates_asked = set()
     for word in words:
@@ -57,9 +62,17 @@ def check_date(words):
             dates_asked.add(dt.strftime('%Y-%m-%d'))
         # if it isn't a word but a number instead give forecast for number
         elif d.isnumeric():
-            # change this if extra time
-            dt = today + timedelta(days=int(d))
-            dates_asked.add(dt.strftime('%Y-%m-%d'))
+            index = words.index(d)
+            next = words[index + 1]
+            # check if 'dagen' is behind num
+            if next.lower() == 'dagen':
+                dt = today + timedelta(days=int(d))
+                dates_asked.add(dt.strftime('%Y-%m-%d'))
+            elif next.lower() in possible_numeric:
+                # check if the next word is in possible dates and multiply it by the value in possible dates
+                # if next == overmorgen and d = 3 sum = 2 * 3 = 6
+                dt = today + timedelta(days=int(d) * possible_numeric[next])
+                dates_asked.add(dt.strftime('%Y-%m-%d'))
 
     # if not found give date for today
     if len(dates_asked) == 0:

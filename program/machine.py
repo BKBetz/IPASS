@@ -51,7 +51,8 @@ def check_if_possible(question, forecast):
             # if activity wasn't found
             else:
                 # change this if extra time
-                answers.append("De gevraagde activiteit is niet gevonden, check op spellingsfouten. Als het goed is gespeld zit de activiteit niet in de database.")
+                text = "We hebben u activiteit niet kunnen vinden. De gemiddelde temperatuur is {} graden. Probeer hiermee uw keuze te maken"
+                answers.append(text.format(forecast[y]))
 
     return answers
 

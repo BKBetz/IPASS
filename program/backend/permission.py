@@ -36,6 +36,14 @@ def getlocation():
 
 @location.route('/city', methods=["POST", "GET"])
 def getcity():
+    # if someone goes here by changing url...also reset
+    if 'answers' in session:
+        flash('Locatie en vragen gereset')
+        session.pop('answers')
+    if 'questions' in session:
+        session.pop('questions')
+    if 'location' in session:
+        session.pop('location')
     # enter city name for weather api
     if request.method == "POST":
         loc = request.form["city"]
