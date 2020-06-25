@@ -1,100 +1,167 @@
 {
   "activities": {
-    "inside": [
-      "bordspellen",
-      "videogamen",
-      "yoga",
-      "binnensport",
-      "lekkernijen maken"
-    ],
+    "inside": {
+      "schaken":  {
+        "type": "vermaak"
+      },
+      "dammen": {
+        "type": "vermaak"
+      },
+      "ganzenbord": {
+        "type": "vermaak"
+      },
+      "jenga": {
+        "type": "vermaak"
+      },
+      "kaarten": {
+        "type": "vermaak"
+      },
+      "videogamen": {
+        "type": "vermaak"
+      },
+      "yoga": {
+        "type": "sport"
+      },
+      "binnensport": {
+        "type": "sport"
+      },
+      "lekkernijen maken": {
+        "type": "koken"
+      },
+      "schoonmaken": {
+        "type": "werk"
+      }
+      },
     "outside": {
       "basketballen": {
         "min_temp": 18,
-        "max_temp": 25
+        "max_temp": 25,
+        "type": "sport"
       },
       "voetballen": {
         "min_temp": 18,
-        "max_temp": 25
+        "max_temp": 25,
+        "type": "sport"
       },
       "tennissen": {
         "min_temp": 18,
-        "max_temp": 25
+        "max_temp": 25,
+        "type": "sport"
       },
       "badmintonnen": {
         "min_temp": 18,
-        "max_temp": 25
+        "max_temp": 25,
+        "type": "sport"
       },
       "volleyballen": {
         "min_temp": 21,
-        "max_temp": 32
+        "max_temp": 32,
+        "type": "sport"
       },
       "skateboarden": {
         "min_temp": 15,
-        "max_temp": 25
+        "max_temp": 25,
+        "type": "sport"
       },
       "hardlopen": {
         "min_temp": 15,
-        "max_temp": 22
+        "max_temp": 22,
+        "type": "sport"
       },
       "picknicken": {
         "min_temp": 18,
-        "max_temp": 28
+        "max_temp": 28,
+        "type": "vermaak"
       },
       "buitenspelen": {
         "min_temp": 15,
-        "max_temp": 30
+        "max_temp": 30,
+        "type": "vermaak"
       },
       "fitnessen": {
         "min_temp": 18,
-        "max_temp": 26
+        "max_temp": 26,
+        "type": "sport"
       },
       "winkelen": {
         "min_temp": 12,
-        "max_temp": 24
+        "max_temp": 24,
+        "type": "vermaak"
       },
       "zwemmen": {
         "min_temp": 23,
-        "max_temp": 32
+        "max_temp": 32,
+        "type": "sport"
       },
       "wandelen": {
         "min_temp": 18,
-        "max_temp": 28
+        "max_temp": 28,
+        "type": "vermaak"
       },
       "tuinieren": {
         "min_temp": 15,
-        "max_temp": 22
+        "max_temp": 22,
+        "type": "werk"
       },
       "fietsen": {
         "min_temp": 13,
-        "max_temp": 25
+        "max_temp": 25,
+        "type": "sport"
       },
       "bbq'en": {
         "min_temp": 20,
-        "max_temp": 28
+        "max_temp": 28,
+        "type": "koken"
       },
       "touwtjespringen": {
         "min_temp": 18,
-        "max_temp": 22
+        "max_temp": 22,
+        "type": "vermaak"
       },
       "buiten-yoga": {
         "min_temp": 20,
-        "max_temp": 25
+        "max_temp": 25,
+        "type": "sport"
       },
       "touren": {
         "min_temp": 18,
-        "max_temp": 25
+        "max_temp": 25,
+        "type": "vermaak"
       },
       "kamperen": {
         "min_temp": 20,
-        "max_temp": 25
+        "max_temp": 25,
+        "type": "vermaak"
       },
       "strand": {
         "min_temp": 23,
-        "max_temp": 33
+        "max_temp": 33,
+        "type": "vermaak"
       },
       "vissen": {
         "min_temp": 18,
-        "max_temp": 25
+        "max_temp": 25,
+        "type": "vermaak"
+      },
+      "snowboarden": {
+        "min_temp": 0,
+        "max_temp": 10,
+        "type": "sport"
+      },
+      "dineren": {
+        "min_temp": 10,
+        "max_temp": 30,
+        "type": "koken"
+      },
+      "uit eten gaan": {
+        "min_temp": 10,
+        "max_temp": 30,
+        "type": "koken"
+      },
+      "bouwen": {
+        "min_temp": 18,
+        "max_temp": 25,
+        "type": "werk"
       }
     }
   }

@@ -45,9 +45,9 @@ def check_if_possible(question, forecast):
             if len(info) > 0:
                 for x in info:
                     if forecast[y] >= info[x][0] and forecast[y] <= info[x][1]:
-                        answers.append(pretty_answer(y, forecast[y], x, True))
+                        answers.append(pretty_answer(y, forecast[y], info, True))
                     else:
-                        answers.append(pretty_answer(y, forecast[y], x, False))
+                        answers.append(pretty_answer(y, forecast[y], info, False))
             # if activity wasn't found
             else:
                 # change this if extra time
@@ -63,32 +63,45 @@ def pretty_answer(date, temp, activity, possible):
     clean_date = date_step.strftime("%d-%m-%Y")
     if possible:
         str = "Je kunt {} de volgende activiteit uitvoeren: {}."
-        return str.format(clean_date, activity)
+        return str.format(clean_date, list(activity.keys())[0])
     else:
-        replacement = find_replacement(temp)
+        replacement = find_replacement(activity, temp)
         str = "Op {} is het gemiddeld {} graden en is het geen goede dag om de volgende activiteit uit te voeren: {}. Een leuke activiteit zou {} zijn."
-        return str.format(clean_date, temp, activity, replacement)
+        return str.format(clean_date, temp, list(activity.keys())[0], replacement)
 
 
-def find_replacement(temp):
+def find_replacement(activity, temp):
     # check the current temp
     outside_activities = get_activities('outside')
-    replacements =[]
+    key = list(activity.keys())[0]
+    possible_replacements = []
+    better_replacements = []
     for x in outside_activities:
         # find all activities that are okay to do with these weather circumstances
         if temp >= outside_activities[x]['min_temp'] and temp <= outside_activities[x]['max_temp']:
+            possible_replacements.append([x, outside_activities[x]])
+
+    if len(possible_replacements) == 0:
+        # no activity found.. give inside activity
+        return give_inside_activity(activity[key][2])
+
+    else:
+        # check for activities with the same type
+        for y in possible_replacements:
+            if activity[key][2] == y[1]['type']:
+                better_replacements.append(y[0])
+        return random.choice(better_replacements)
+
+
+def give_inside_activity(type):
+    # return random inside activity
+    inside_activities = get_activities('inside')
+    replacements = []
+    for x in inside_activities:
+        if inside_activities[x]['type'] == type:
             replacements.append(x)
 
     if len(replacements) == 0:
-        # no activity found.. give inside activity
-        return give_inside_activity()
-
+        return random.choice(inside_activities)
     else:
-        # pick random outside activity that can act as a replacement
         return random.choice(replacements)
-
-
-def give_inside_activity():
-    # return random inside activity
-    inside_activities = get_activities('inside')
-    return random.choice(inside_activities)

@@ -23,12 +23,9 @@ def home():
         if 'answers' not in session:
             session['answers'] = []
 
-        print(session['questions'])
-        print(session['answers'])
-        print(session['location'])
         # get current weather
         cw = filter_current_weather(session['location'])
-        print(cw)
+
         if cw == "not found":
             # location hasn't been found.. return to city page
             flash('De gegeven locatie is niet gevonden')
