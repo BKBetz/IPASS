@@ -3,6 +3,11 @@ import json
 from datetime import *
 import random
 
+"""
+    This file reads the json files and checks the forecast and user input to return an answer. This could be advice if the
+    activity isn't a good move or it can give a "OK" if the activity is approved.
+"""
+
 
 def get_activities(option):
     # get activities from the json file based on the option.. except keyerror if option not found

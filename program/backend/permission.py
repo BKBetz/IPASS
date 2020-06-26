@@ -1,5 +1,11 @@
 import geocoder
 from flask import *
+"""
+    This file checks for the users location. The location is necessary in order to run the application. If there is no
+    location or the entered location isn't located in the netherlands it redirects to the getlocation page.
+    The given location is immediately added to a flask session for later usage.
+"""
+
 
 location = Blueprint("location", __name__, static_folder="static", template_folder="templates")
 

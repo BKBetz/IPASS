@@ -1,7 +1,14 @@
 from nltk import *
 from datetime import *
-from dateutil.parser import parse
 from flask import *
+
+"""
+    This file gets the user input (or question) and filters the sentence given with nltk and dictionaries.
+    The asked question gets saved in the session for later usage and the function redirects immediately to the function 
+    that gives the answer. Which could be advice or an "OK".
+    If no activity was given it returns The temperature of the asked day so that the user can decide for him/herself.
+"""
+
 
 question = Blueprint("question", __name__, static_folder="static", template_folder="templates")
 
@@ -50,7 +57,7 @@ def check_date(words):
                       'zondag': get_count('Sun')}
 
     # dict used for plural of words to use in the numeric check
-    possible_numeric = {'morgens': 1, 'overmorgens': 2, 'overovermorgens': 3,'weken': 7, 'maanden': 30, 'jaren': 365}
+    possible_numeric = {'dagen': 1, 'overmorgens': 2, 'overovermorgens': 3,'weken': 7, 'maanden': 30, 'jaren': 365}
 
     dates_asked = set()
     for word in words:
@@ -64,12 +71,8 @@ def check_date(words):
         elif d.isnumeric():
             index = words.index(d)
             next = words[index + 1]
-            # check if 'dagen' is behind num
-            if next.lower() == 'dagen':
-                dt = today + timedelta(days=int(d))
-                dates_asked.add(dt.strftime('%Y-%m-%d'))
-            elif next.lower() in possible_numeric:
-                # check if the next word is in possible dates and multiply it by the value in possible dates
+            if next.lower() in possible_numeric:
+                # check if the next word is in possible numeric and multiply it by the value in possible dates
                 # if next == overmorgen and d = 3 sum = 2 * 3 = 6
                 dt = today + timedelta(days=int(d) * possible_numeric[next])
                 dates_asked.add(dt.strftime('%Y-%m-%d'))

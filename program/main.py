@@ -4,6 +4,12 @@ from program.backend.user_input import *
 from flask import *
 from program.machine import check_if_possible
 
+"""
+    This file is the file u want to run to test the whole application. It combines most of the functions and adds the
+    answers to the session. It uses all the variables given by the sessions to display it on the templates page.
+"""
+
+
 app = Flask(__name__)
 app.register_blueprint(location)
 app.register_blueprint(question)

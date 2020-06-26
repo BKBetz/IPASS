@@ -1,4 +1,10 @@
 import requests
+"""
+    This file uses the location in the session to get the weather for that specific location. It can get a specific day
+    (forecast can fetch 5 days max) temperature or gives a filtered list of the current weather with only the necessary
+    data needed to display on the frontend.
+"""
+
 
 
 def get_current_weather(location):
